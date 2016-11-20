@@ -33,7 +33,16 @@
                 <input type="hidden" name="{{ k }}" value="{{ v }}">
         {% endfor %}    
     <input type="submit" value="{% trans "Search" %}">
-    <input type="reset" value="{% trans "Clear" %}">
+    <input type="button" value="{% trans "Clear" %}" class="clear">
     </p>
 </form>
 {% endwith %}
+<script>
+  var $ = django.jQuery
+  $('input.clear').click(function(e) {
+    e.preventDefault()
+    var $form = $(e.target).parents('form')
+    $form.find('input.vDateField').val('')
+    $form.submit()
+  })
+</script>
